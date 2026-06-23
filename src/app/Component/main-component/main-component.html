@@ -1,0 +1,144 @@
+<p>
+    Welcome to Angular Roadmap 
+    <br>
+    This is a Documentation of my angular notes
+    <br><br>
+    <b>1. All Angular projects starts with the "index.html" and "app.ts"</b>
+    <br>
+    <ul>
+        <li>index.html is a base html file which calls for "&lt; app-root&gt;&lt;/app-root&gt;"</li>
+        <li>Then the angular looks for app-root decorator in components</li>
+        <li>Now Main.ts comes in to picture. The it registers the app component which has the app-root decorator</li>
+        <li>Finaly, App component's HTML will get loaded</li>
+    </ul>
+    <p>
+        But we can also change the initial loading root component.
+        <br>
+        we need to create a new component under any name you desire eg: "main-component",
+        then we need to change the "index.html" call and register this new component in "main.ts"
+        <br><br>
+        ie: From "&lt; app-root&gt;&lt;/app-root&gt;" To "&lt;main-component&gt;&lt;/main-component&gt;"
+        <br>
+        So, basically all the content that you are readin now is loaded from main-component and not from app-root component.
+    </p>
+    <p>
+        Ok, we saw a basic introduction about the root component in angular but, <br>
+        <b>what is a component and why we need it in angular?</b>
+        <br>
+        We all know why we use OOPS concept in coding : to reduce redundency and to resue,
+        similarly the angular components are treated same : to reduce redundency and to resue the code. 
+        <br>
+    </p>
+    <p>
+        <b>2. Interpolation</b>
+        <br><br>
+        String interpolation is a simple way to use a variable from a .ts file to its .html file in a component
+        <br>
+        i've declared a variable "name" in the main-component.ts file and to use it we need 
+        to use double curly bracis in html file. 
+        <br>Eg : {{name}}
+        <br>
+        <br>
+        we can also invloke a method using interpolation!
+        here i've declared a mehtod named "sample_method()" in the .ts file and i can call this from html using same double curly bracis
+        <br>Eg: {{sample_method()}}
+    </p>
+    <p>
+        <b>3. Data Binding (from .ts to .html)</b>
+        <br><br>
+        This is basically one way data transcation from a .ts file to .html file.
+        <br>
+        Let's say i have a variable called "isDisabled = ..some dynamic boolean value",
+        now i want a particluar input filed to be enabled or disabled.
+        <br>
+         In this case, i can use property binding with "[]" in html input tag binding with the .ts variable name "isDisabled",
+         now angular takes the value from .ts file and uses it against the input tag in HTML file
+        <ul>
+            <li>Property Binding</li>
+            <input type="text" [disabled]="isDisabled" value="Some Random Text">
+            <br>
+            So, The above input fied is disabled because the "isDisabled" variable in .ts is set to true 
+                and attached to html input tag like this : [disabled]="isDisabled"
+
+            <li>Class Binding</li>
+            <li>Style Binding</li>
+            
+        </ul>
+    <p>
+        <b>4. Event Binding (from .html to .ts)</b>
+        <br>
+        We can listent to the events in HTML file and send those to .ts file.
+        <br>
+        open the inspect screen, then click the button below and check the console log!<br>
+        <button (click) ="onClick($event)">Click Me for Event Binding</button>
+    <p>
+        <b>5. Two Way Bindind (@ngModel)</b>
+        <br>
+        Here you can see a input field and the text field. using "@ngModel" we can dynamically
+        transfer data in two ways.
+        <input type="text" [(ngModel)]="twoWayData">
+        <br> 
+        Here is the value {{twoWayData}}
+    </p>
+    <p>
+        <b>6. Directives</b>
+        <br>
+        Directives are basically classes in Angular. It can be defined as a class which can alter
+        the behaviour of the DOM.
+        <br>
+        In this case, we have few types of Directives
+        <ul>
+            <li>Components</li>
+            <li>Structural</li>
+            <li>Attribute</li>
+        </ul>
+        All these have few inbuilt directives and we can also create custom ones.
+    
+    <p>
+        <b>6a. Structural Directives</b>
+        <br>
+        There are few inbuilt Structural directives in angular
+        <ul>
+            <li>@ngIf</li>
+            <button (click)="ngIfMethod()">Click me to use @ngIf</button>
+            <p *ngIf ="isNgIfTrue">*ngIf is true and you can see this</p>
+             @if(isNgIfTrue)
+             {
+                <p>@If is true and you can see this</p>
+             }
+             <br>
+             As you can see there are two ways to use if condition, 
+             <br>
+             1. using older ..html.. @ngIf = "some condition"; else ..html..
+             <br>
+             2. using new @If (some condition){{ ..html..} @else {{..html..}
+             <br>
+             Note: <br>
+             1. you can use then and else block with ng-template in older versions
+             <br>
+             2. with newer version you can use if(some condition), else if(some condition) {{} and else {{}
+            <li>@ngFor</li>
+            <p><b>With older *ngFor</b></p>
+            <div *ngFor = "let item of forLoop">
+                <p>{{item}}</p>
+            </div>
+            <p><b>With newer for</b></p>
+            @for( item of forLoop; track item)
+            {
+                <p>{{item}}</p>
+            }
+            <br>Note: new "for" requires "track" keyword to track identity of each iteration.
+            <b>6b. Attribute Directives</b>
+            <br>
+        </ul>
+        <p>
+            <b>7. Input and Output : Parent and Child Component Interaction:</b>
+            <br>
+            So, I've created a child-compenent and i will invoke it in main-component 
+           <br> --------------------------------------------------------- <br>
+            Parent component : main-component 
+            <br>here is the output from child-compenent : {{childMessage}}
+            <br> --------------------------------------------------------- <br>
+            <app-child-component (childOutput)="childMessage= $event" [parentData]="childComponentData"></app-child-component>
+        </p>
+  
