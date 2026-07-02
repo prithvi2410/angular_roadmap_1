@@ -130,6 +130,7 @@
             <br>Note: new "for" requires "track" keyword to track identity of each iteration.
             <b>6b. Attribute Directives</b>
             <br>
+            ???
         </ul>
         <p>
             <b>7. Input and Output : Parent and Child Component Interaction:</b>
@@ -141,4 +142,31 @@
             <br> --------------------------------------------------------- <br>
             <app-child-component (childOutput)="childMessage= $event" [parentData]="childComponentData"></app-child-component>
         </p>
-  
+        <p>
+            <b>8. Service </b>
+            The below data is from service: data_service
+            @for(item of serviceData; track item)
+            {
+                <p>{{item}}</p>
+            }
+            <br>
+        </p>
+        <p>
+            <b>8. API HTTP call:</b>
+            <br>
+            <p>This data is from api http client</p>
+            @if(apiData$ | async; as apiData)
+            {
+                <p>{{apiData.status}}</p>
+                <p>{{apiData.message}}</p>
+            }
+            @else{
+                <p>Loading..</p>
+               
+            }
+<p>
+            <b> 9. Routing:</b>
+            <br>
+            <nav>
+                <a routerLink="/routeTest" routerLinkActive="active">Route Test</a>
+            </nav>

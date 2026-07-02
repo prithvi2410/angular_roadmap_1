@@ -3,5 +3,5 @@ import { appConfig } from './app/app.config';
 import { App } from './app/app';
 import { MainComponent } from './app/Component/main-component/main-component';
 
-bootstrapApplication(MainComponent, appConfig)
+bootstrapApplication(App, appConfig)
   .catch((err) => console.error(err));

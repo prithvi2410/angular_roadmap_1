@@ -4,6 +4,6 @@ import { config } from './app/app.config.server';
 import { MainComponent } from './app/Component/main-component/main-component';
 
 const bootstrap = (context: BootstrapContext) =>
-    bootstrapApplication(MainComponent, config, context);
+    bootstrapApplication(App, config, context);
 
 export default bootstrap;
